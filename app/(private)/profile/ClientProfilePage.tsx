@@ -73,7 +73,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { logoutUser } from "@/actions/user";
 import { useRouter } from "next/navigation";
-import { IUser } from "@/models/User";
+import { IUser, IUserInfo } from "@/models/User";
+import { useUserInfo } from "../provider";
 
 const DATA = {
   user: {
@@ -205,7 +206,8 @@ const DATA = {
   ],
 };
 
-export default function ClientProfilePage({ user }: { user: IUser }) {
+export default function ClientProfilePage() {
+  const userInfo = useUserInfo();
   const isMobile = useIsMobile();
   const router = useRouter();
   const [activeTeam, setActiveTeam] = React.useState(DATA.teams[0]);
@@ -391,7 +393,7 @@ export default function ClientProfilePage({ user }: { user: IUser }) {
                     </Avatar>
                     <div className="grid flex-1 text-left text-sm leading-tight">
                       <span className="truncate font-semibold">
-                        {user.email}
+                        {userInfo.email}
                       </span>
                       <span className="truncate text-xs">
                         {DATA.user.email}
