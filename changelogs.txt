@@ -1,0 +1,8 @@
+3008
+
+3108
+- common error in actions and handles  
+- authstore zustand 
+- comprehensive user model 
+- create 3 relations User-Book (1-1, 1-many, many-many)
+- 
