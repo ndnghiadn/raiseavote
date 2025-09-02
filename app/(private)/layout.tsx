@@ -1,17 +1,14 @@
 import React from 'react'
-import { getUser } from '../actions/user'
-import { redirect } from 'next/navigation'
+import { getUserInfo } from '../../actions/user'
+import PrivateLayoutProvider from './provider'
 
 const PrivateLayout = async ({ children }: { children: React.ReactNode }) => {
-const user = await getUser()
-if (!user) {
-  redirect('/login')
-}
+  const userInfo = await getUserInfo()
                                                                                                                                                                                                                                                                                                                                                                                                                             
   return (
-    <div>
-      {children}
-    </div>
+    <PrivateLayoutProvider userInfo={userInfo}>
+       {children}
+    </PrivateLayoutProvider>
   )
 }
 

@@ -71,7 +71,7 @@ import {
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { logoutUser } from "@/app/actions/user";
+import { logoutUser } from "@/actions/user";
 import { useRouter } from "next/navigation";
 import { IUser } from "@/models/User";
 

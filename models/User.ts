@@ -11,3 +11,7 @@ const UserSchema: Schema<IUser> = new Schema({
 });
 
 export const User: Model<IUser> = mongoose.models.User || mongoose.model<IUser>("User", UserSchema);
+
+export interface IUserInfo extends Omit<IUser, 'password'> {
+  id: string;
+}

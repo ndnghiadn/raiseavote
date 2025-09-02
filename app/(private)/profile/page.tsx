@@ -1,4 +1,4 @@
-import { getUser } from '@/app/actions/user';
+import { getUser } from '@/actions/user';
 import React from 'react'
 import ClientProfilePage from './ClientProfilePage';
 

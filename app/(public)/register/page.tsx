@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userRegisterSchema, UserRegisterInput } from "@/lib/validations/user";
 import { useRouter } from "next/navigation";
-import { registerUser } from "@/app/actions/user";
+import { registerUser } from "@/actions/user";
 
 const RegisterPage = () => {
   const {
