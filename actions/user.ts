@@ -16,11 +16,14 @@ export const setTokenCookies = async (payload: JWTPayload): Promise<void> => {
   const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET!);
   const cookieStore = await cookies();
   cookieStore.set("accessToken", accessToken, {
+    maxAge: 7 * 60 * 60 * 24, // 7-days valid from last access
+    domain: "",
     httpOnly: true,
     sameSite: "strict",
     secure: true,
-    maxAge: 7 * 60 * 60 * 24, // 7-days valid from last access
     path: "/",
+    partitioned: true,
+    priority: "high",
   });
 };
 
@@ -80,15 +83,25 @@ export async function getUser(): Promise<IUserInfo | null> {
 
 export const getUserInfo = async (): Promise<IUserInfo> => {
   const result = await getUser();
-  
+
   if (!result) {
-    redirect('/login');
+    redirect("/login");
   }
-  
+
   return result;
-}
+};
 
 export async function logoutUser() {
   const cookieStore = await cookies();
-  cookieStore.delete("accessToken");
+  cookieStore.set("accessToken", "", {
+    maxAge: 0,
+    domain: "",
+    httpOnly: true,
+    sameSite: "strict",
+    secure: true,
+    path: "/",
+    partitioned: true,
+    priority: "high"
+  });
+  redirect("/login");
 }

@@ -75,6 +75,7 @@ import { logoutUser } from "@/actions/user";
 import { useRouter } from "next/navigation";
 import { IUser, IUserInfo } from "@/models/User";
 import { useUserInfo } from "../provider";
+import LarryComp from "./components/LarryComp/LarryComp";
 
 const DATA = {
   user: {
@@ -209,13 +210,11 @@ const DATA = {
 export default function ClientProfilePage() {
   const userInfo = useUserInfo();
   const isMobile = useIsMobile();
-  const router = useRouter();
   const [activeTeam, setActiveTeam] = React.useState(DATA.teams[0]);
   if (!activeTeam) return null;
 
   const handleLogout = async () => {
     await logoutUser();
-    router.push("/login");
   };
 
   return (
@@ -485,16 +484,7 @@ export default function ClientProfilePage() {
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="aspect-video rounded-xl bg-muted/50">
-              hello world
-            </div>
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-          </div>
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
-        </div>
+        <LarryComp />
       </SidebarInset>
     </SidebarProvider>
   );
