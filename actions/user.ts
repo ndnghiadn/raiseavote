@@ -17,13 +17,10 @@ export const setTokenCookies = async (payload: JWTPayload): Promise<void> => {
   const cookieStore = await cookies();
   cookieStore.set("accessToken", accessToken, {
     maxAge: 7 * 60 * 60 * 24, // 7-days valid from last access
-    domain: "",
     httpOnly: true,
-    sameSite: "strict",
+    sameSite: "lax",
     secure: true,
     path: "/",
-    partitioned: true,
-    priority: "high",
   });
 };
 
