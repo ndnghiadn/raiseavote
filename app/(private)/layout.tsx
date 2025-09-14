@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import React from 'react'
 import { getUserInfo } from '../../actions/user'
 import PrivateLayoutProvider from './provider'
